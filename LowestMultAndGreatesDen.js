@@ -1,15 +1,32 @@
 function getTotalX(a, b) {
-    // Write your code here
-    console.log(mcm(a));
 
-
+    let mult = mincm(a);
+    let maxD = maxcd(b);
+    let cont = 0;
+    let multiplier = 1;
+    let currentMult = mult;
+    
+    if(mult === 0){
+        return 0;
+    }
+    
+    while(currentMult <= maxD){
+        if(isEvenlyDivisible(maxD, currentMult)){
+            cont++;
+            console.log(cont);
+        }
+        multiplier++;
+        currentMult = mult * multiplier;       
+    }
+    return cont;
 }
 
-function mcd(b){
+function maxcd(b){
+    
     let minValue = (Math.min(...b))
     while(minValue > 0){
         if(b.every(x => isEvenlyDivisible(x, minValue))){
-            console.log("found! ", minValue)
+            console.log("found! max", minValue)
             return minValue;
         }
         minValue--;
@@ -17,7 +34,8 @@ function mcd(b){
     return minValue;
 }
 
-function mcm(a){
+function mincm(a){
+
     let maxMult = a.reduce((accu, current) => accu * current)
     let minMult = 1;
     
@@ -26,6 +44,10 @@ function mcm(a){
             console.log("found! ", minMult)
             return minMult;
         }
+        if(minMult > 100){ //trampa 
+            return 0
+        }
+
         minMult++;
     }
     return maxMult;
