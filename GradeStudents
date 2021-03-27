@@ -1,16 +1,15 @@
 function gradingStudents(grades) {
-    // Write your code here
+    
     return (grades.map((x) => round(x)))
 }
 
 function round(...args){
     
-    let [calif, nextM = 5, mindDif = 3] = args;
-
-    let dif = nextM - (calif % nextM)
+    let [calif, nextM = 5, mindDif = 3] = args; //deconstruction
+    let dif = nextM - (calif % nextM); //diferencia de puntos al siguiente multiplo 
     
     if(calif >= 38 && (dif < mindDif)){
-        return calif + dif;
+        return calif + dif; //si se puede redondear
     }
-    return calif;
+    return calif; //si no se puede redondear regresa la calif normal
 }
