@@ -1,0 +1,20 @@
+function getTotalX(a, b) {
+    // Write your code here
+    console.log(lcd(b));
+}
+
+function lcd(b){
+    let minValue = (Math.min(...b))
+    while(minValue > 0){
+        if(b.every(x => isEvenlyDivisible(x, minValue))){
+            console.log("found! ", minValue)
+            return minValue;
+        }
+        minValue--;
+    }
+    return minValue;
+}
+
+function isEvenlyDivisible(a, b){
+    return a % b === 0;
+}
