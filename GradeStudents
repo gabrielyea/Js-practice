@@ -1,0 +1,16 @@
+function gradingStudents(grades) {
+    // Write your code here
+    return (grades.map((x) => round(x)))
+}
+
+function round(...args){
+    
+    let [calif, nextM = 5, mindDif = 3] = args;
+
+    let dif = nextM - (calif % nextM)
+    
+    if(calif >= 38 && (dif < mindDif)){
+        return calif + dif;
+    }
+    return calif;
+}
