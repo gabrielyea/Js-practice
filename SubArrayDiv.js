@@ -1,20 +1,22 @@
-// Complete the birthday function below.
-function birthday(bar, d, m) {
-  console.log(bar);
-  console.log(bar.slice(1,3));
-  console.log(bar);
-  let counter = 0;
-  
-    for (let i = 0; i < bar.length - 1; i++){
-     if (checkBar (bar,i,m)===d){
-         counter ++;
-     }
+function birthday(s, d, m) {
 
-}
-return counter
-}
-function checkBar (bar,i,size){
-    let barslice = bar.slice(i,i+size)
-    let num = barslice.reduce((accu,current) => (accu + current));
-    return num
+  //if only one chocolate block is present
+    if(s.length < 2){
+        if(s.includes(d))
+            return 1;
+            
+    return 0;       
+    }
+    
+  
+    let allSlices = [];
+    let goodSlices = [];
+    let checkDaySum = (bar) => (bar.reduce((a, b) => a + b) === d); 
+
+    for (let i = 0; i < s.length - 1; i++){
+        allSlices.push(s.slice(i, i + m));  //create chocolate slices of m length
+    }
+    goodSlices = (allSlices.filter(checkDaySum)); //filter slices that sum == day
+    
+    return goodSlices.length;
 }
